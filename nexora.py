@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 mon_mot_de_passe = os.getenv("MOT_DE_PASSE_NEXORA")
-email = os.getenv("EMAIL")
+email = os.getenv("EMAIL_NEXORA")
 app = QApplication([])
 fenetre = QWidget()
 layout = QVBoxLayout()
