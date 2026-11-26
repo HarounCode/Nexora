@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 mon_mot_de_passe = os.getenv("MOT_DE_PASSE_NEXORA")
+email = os.getenv("EMAIL")
 app = QApplication([])
 fenetre = QWidget()
 layout = QVBoxLayout()
@@ -35,7 +36,7 @@ def connexion():
     global nombre
     nombre = random.randint(100000,999999)
     email_message = EmailMessage()
-    email_message["From"] = "assistance4053@gmail.com"
+    email_message["From"] = email
     email_message["To"] = champ_email.text()
     email_message["Subject"] = "Code de vérification – Connexion à votre compte"
     email_message.set_content(f"""Bonjour,
@@ -55,7 +56,7 @@ Cordialement,
 L'équipe de Nexora""")
     serveur = smtplib.SMTP("smtp.gmail.com",587)
     serveur.starttls()
-    serveur.login("assistance4053@gmail.com",mon_mot_de_passe)
+    serveur.login(email,mon_mot_de_passe)
     serveur.send_message(email_message)
     serveur.quit()
     label_code.show()
